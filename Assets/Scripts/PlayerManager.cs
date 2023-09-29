@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]       //needed for movement
-[RequireComponent(typeof(CircleCollider2D))]  //needed for the rigidbody
-[RequireComponent(typeof(SpriteRenderer))]    //needed for visuals
+[RequireComponent(typeof(CircleCollider2D))] //needed for the rigidbody
+[RequireComponent(typeof(SpriteRenderer))]  //needed for visuals
 
 
 public class PlayerManager : MonoBehaviour
