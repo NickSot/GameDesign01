@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "BodyPartManager", menuName = "ScriptableObjects/BodyPartManager")]
 public class BodyPartManager : ScriptableObject {
 
 
@@ -10,10 +12,10 @@ public class BodyPartManager : ScriptableObject {
     public bool[] HasBodyPart { get; private set; } = new bool[_totalAmountOfBodyParts];
 
     public bool CanRoll { get; private set; } = true;
-    public bool CanWalk { get; private set; } = false;
-    public bool CanJump { get; private set; } = false;
-    public bool CanPush { get; private set; } = false;
-    public bool CanPull { get; private set; } = false;
+    public bool CanWalk { get; private set; } = true;
+    public bool CanJump { get; private set; } = true;
+    public bool CanPush { get; private set; } = true;
+    public bool CanPull { get; private set; } = true;
 
     public static event Action<BodyPartType> OnBodyPartAdded;
     public static event Action<BodyPartType> OnBodyPartRemoved;
@@ -25,6 +27,7 @@ public class BodyPartManager : ScriptableObject {
     public void AddBodyPart(BodyPartType type) {
         HasBodyPart[(int)type] = true;
         OnBodyPartAdded?.Invoke(type);
+        Debug.Log("Added Part " + (int)type);
         EvaluateAbilities();
     }
 
