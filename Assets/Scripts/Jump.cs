@@ -49,7 +49,7 @@ public class Jump : MonoBehaviour
         }
 
         // add extra gravity when falling, makes character feel less floaty
-        if (_player.RigidBody.velocity.y < 0) _player.RigidBody.gravityScale = _gravityScale * _fallGravityMultiplier;
+        if (_player.RigidBody.velocity.y < 0) _player.RigidBody.gravityScale = _gravityScale * _fallGravityMultiplier; 
         else _player.RigidBody.gravityScale = _gravityScale;
 
         // perform jumps
@@ -58,7 +58,7 @@ public class Jump : MonoBehaviour
     }
 
     private void OnJumpInputDown() {
-        _timeJumpBuffer = _jumpBufferThreshold;
+        _timeJumpBuffer = _jumpBufferThreshold; 
         if (CanJump) {
             //_isJumping = true;
             PerformJump();
