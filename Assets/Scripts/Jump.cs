@@ -36,7 +36,7 @@ public class Jump : MonoBehaviour
 
 
     public void Update() {
-        //if(_player.PartManager.CanJump) Debug.Log("We should be able to jump");
+        //if(CanJump) Debug.Log("We should be able to jump");
 
         // update our timers which enable mroe responsive jumping
         if (!Active) return;
