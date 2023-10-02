@@ -24,7 +24,7 @@ public class Jump : MonoBehaviour
     [SerializeField] private float _jumpBufferThreshold = 0.1f;
 
     private bool CanUseCoyote => !_player.IsGrounded && _timeLastOnGround > 0;
-    private bool CanJump => /*_player.PartManager.CanJump &&*/ (_player.IsGrounded || CanUseCoyote || _airJumpsLeft > 0);
+    private bool CanJump => _player.PartManager.CanJump && (_player.IsGrounded || CanUseCoyote || _airJumpsLeft > 0);
     private float _timeJumpBuffer = 0.0f;
     private float _timeLastOnGround = 0.0f;
     private int _airJumpsLeft;
