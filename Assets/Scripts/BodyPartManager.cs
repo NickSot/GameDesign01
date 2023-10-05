@@ -11,14 +11,12 @@ public class BodyPartManager : ScriptableObject {
     private static readonly int _totalAmountOfBodyParts = 6;
     public bool[] HasBodyPart { get; private set; } = new bool[_totalAmountOfBodyParts];
 
-    public bool CanRoll { get; private set; } = true;
-    public bool CanWalk { get; private set; } = true;
-    public bool CanJump { get; private set; } = true;
-    public bool CanPush { get; private set; } = true;
-    public bool CanPull { get; private set; } = true;
+    public bool[] HasAbility { get; private set; } = new bool[5];
+
 
     public static event Action<BodyPartType> OnBodyPartAdded;
     public static event Action<BodyPartType> OnBodyPartRemoved;
+    public static event Action OnAbiltiesChanged;
 
     /// <summary>
     /// Sets the bodypart as active. Re-evalutes players abilities. Also invokes the OnBodyPartAdded event. 
@@ -56,11 +54,13 @@ public class BodyPartManager : ScriptableObject {
     /// (re-)Evaluates the different abilities of the player.
     /// </summary>
     private void EvaluateAbilities() {
-        CanWalk = HasBodyPart[(int)BodyPartType.LeftLeg] && HasBodyPart[(int)BodyPartType.RightLeg];
-        CanJump = HasBodyPart[(int)BodyPartType.LeftLeg] || HasBodyPart[(int)BodyPartType.RightLeg];
-        CanPull = HasBodyPart[(int)BodyPartType.LeftArm] && HasBodyPart[(int)BodyPartType.RightArm];
-        CanPush = HasBodyPart[(int)BodyPartType.LeftArm] || HasBodyPart[(int)BodyPartType.RightArm];
-        CanRoll = HasBodyPart[(int)BodyPartType.Head]    && !CanWalk;
+        HasAbility[(int)PlayerAbilities.Walk] = HasBodyPart[(int)BodyPartType.LeftLeg] && HasBodyPart[(int)BodyPartType.RightLeg];
+        HasAbility[(int)PlayerAbilities.Jump] = HasBodyPart[(int)BodyPartType.LeftLeg] || HasBodyPart[(int)BodyPartType.RightLeg];
+        HasAbility[(int)PlayerAbilities.Pull] = HasBodyPart[(int)BodyPartType.LeftArm] && HasBodyPart[(int)BodyPartType.RightArm];
+        HasAbility[(int)PlayerAbilities.Push] = HasBodyPart[(int)BodyPartType.LeftArm] || HasBodyPart[(int)BodyPartType.RightArm];
+        HasAbility[(int)PlayerAbilities.Roll] = HasBodyPart[(int)BodyPartType.Head]    && !HasAbility[(int)PlayerAbilities.Walk];
+        Debug.Log("Re-evaluated abilities");
+        OnAbiltiesChanged?.Invoke();
     }
 }
 
@@ -72,4 +72,12 @@ public enum BodyPartType {
     LeftArm,
     RightLeg,
     LeftLeg
+}
+
+public enum PlayerAbilities {
+    Roll, 
+    Walk,
+    Jump,
+    Push,
+    Pull
 }

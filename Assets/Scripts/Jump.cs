@@ -10,21 +10,22 @@ public class Jump : MonoBehaviour
 
     private PlayerManager _player;
 
-    [SerializeField] private float _gravityScale = 1f;
-    [SerializeField] private float _jumpForce = 1f;
-    //[SerializeField] private float _jumpHeight = 3f;
-    //[SerializeField] private float _jumpTimeToApex = 0.3f;
+    private float _gravityScale = 1f;
+
+    //[SerializeField] private float _jumpForce = 1f;
+    [SerializeField] private float _jumpHeight = 3f;
+    [SerializeField] private float _jumpTimeToApex = 0.3f;
     [SerializeField] private float _jumpCutModifier = 0.5f;
     [SerializeField] private float _fallGravityMultiplier = 1.5f;
     [SerializeField] private int _airJumps = 0;
 
-    private float _jumpVelocity = 10;
+    private float _jumpVelocity;
            
     [SerializeField] private float _coyoteTimeThreshold = 0.1f;
     [SerializeField] private float _jumpBufferThreshold = 0.1f;
 
     private bool CanUseCoyote => !_player.IsGrounded && _timeLastOnGround > 0;
-    private bool CanJump => _player.PartManager.CanJump && (_player.IsGrounded || CanUseCoyote || _airJumpsLeft > 0);
+    private bool CanJump => _player.PartManager.HasAbility[(int)PlayerAbilities.Jump] && (_player.IsGrounded || CanUseCoyote || _airJumpsLeft > 0);
     private float _timeJumpBuffer = 0.0f;
     private float _timeLastOnGround = 0.0f;
     private int _airJumpsLeft;
@@ -32,6 +33,12 @@ public class Jump : MonoBehaviour
 
     public void Start() {
         _player = GetComponent<PlayerManager>();
+    }
+
+    private void OnValidate() {
+
+        _gravityScale = (2 * _jumpHeight) / Mathf.Pow(_jumpTimeToApex, 2);
+        _jumpVelocity = _gravityScale * _jumpTimeToApex;
     }
 
 
@@ -72,7 +79,7 @@ public class Jump : MonoBehaviour
         if (_isJumping) {
             _isJumping = false;
             //if (_player.RigidBody.velocity.y > 0) _player.RigidBody.AddForce(Vector2.down * _player.RigidBody.velocity.y * (1-_jumpCutGravityModifier), ForceMode2D.Impulse); // this method results in buggy jump behaviour when on slope
-            if (_player.RigidBody.velocity.y > -_jumpCutModifier * _jumpForce) _player.RigidBody.velocity -= new Vector2(0, _jumpVelocity * _jumpCutModifier);
+            if (_player.RigidBody.velocity.y > -_jumpCutModifier * _jumpVelocity) _player.RigidBody.velocity -= new Vector2(0, _jumpVelocity * _jumpCutModifier);
             Debug.Log("Jump cut");
         }
     }
