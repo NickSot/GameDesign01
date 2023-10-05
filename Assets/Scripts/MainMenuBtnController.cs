@@ -14,7 +14,7 @@ public class MainMenuBtnController : MonoBehaviour
     void Start()
     {
         this.btnStart.onClick.AddListener(() => {
-            SceneManager.LoadScene("Level_1");
+            SceneManager.LoadScene("Story");
         });
     }
 
