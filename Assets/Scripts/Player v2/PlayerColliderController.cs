@@ -17,13 +17,14 @@ public class PlayerColliderController : MonoBehaviour
     [SerializeField] private float _groundCheckDistance;
     [SerializeField] private LayerMask _groundLayer;
 
-    void Start()
+    void OnEnable()
     {
         _headCollider = GetComponent<CircleCollider2D>();
         _bodyCollider = GetComponent<BoxCollider2D>();
         BodyPartManager.OnAbiltiesChanged += ChangeColliders;
         _groundLayer = LayerMask.GetMask("Environment");
     }
+
 
     private void OnDisable() {
         BodyPartManager.OnAbiltiesChanged -= ChangeColliders;
@@ -44,7 +45,7 @@ public class PlayerColliderController : MonoBehaviour
             if (abilities[(int)PlayerAbilities.Walk]) {
                 _headCollider.enabled = false;
                 _bodyCollider.enabled = true;
-                _groundCheckSize = new Vector2(0.95f, 0.1f);
+                _groundCheckSize = new Vector2(0.74f, 0.1f);
             }
         } else {
             Debug.Log("ERROR changing colliders, array passed by bodypartManager has incorrect size");

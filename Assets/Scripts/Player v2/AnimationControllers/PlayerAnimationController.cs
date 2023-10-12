@@ -5,17 +5,18 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
 
-public class PlayerAnimationController : MonoBehaviour {
+public abstract class PlayerAnimationController : MonoBehaviour {
     protected Animator _animator;
     protected SpriteRenderer _renderer;
     protected Rigidbody2D _rigidBody;
     [SerializeField] protected BodyPartType _partType;
     public bool IsActive { get; protected set; }
 
-    protected virtual void Start() {
+    public virtual void Start() {
         _animator = GetComponent<Animator>();
         _renderer = GetComponent<SpriteRenderer>();
         _rigidBody = GetComponentInParent<Rigidbody2D>();
+        _renderer.enabled = GetComponentInParent<PlayerManager>().PartManager.HasBodyPart[(int)_partType];
         BodyPartManager.OnBodyPartAdded += SetActive;
         BodyPartManager.OnBodyPartRemoved += SetInactive;
     }
@@ -52,9 +53,10 @@ public class PlayerAnimationController : MonoBehaviour {
     /// Makes sure the sprite is facing the direction you are moving
     /// </summary>
     protected void SetSpriteDirection() {
-        if (_rigidBody.velocity.x < 0) {
+        float input = Input.GetAxisRaw("Horizontal");
+        if (input < 0) {
             _renderer.flipX = true;
-        } else if (_rigidBody.velocity.x > 0) {
+        } else if (input > 0) {
             _renderer.flipX = false;
         }
     }

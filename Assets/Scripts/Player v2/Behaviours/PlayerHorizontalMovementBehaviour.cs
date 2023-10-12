@@ -8,17 +8,21 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerHorizontalMovementBehaviour : PlayerMovementBehaviour {
 
-    protected override void Setup() {
-        if(_rigidBody.sharedMaterial == null) _rigidBody.sharedMaterial = new PhysicsMaterial2D();
-        BodyPartManager.OnAbiltiesChanged += ChangeRigidbody;
-    }
 
+    private void OnEnable() {
+        _rigidBody = GetComponent<Rigidbody2D>();
+        _stats = GetComponent<StatsController>();
+        if (_rigidBody.sharedMaterial == null) _rigidBody.sharedMaterial = new PhysicsMaterial2D();
+        BodyPartManager.OnAbiltiesChanged += ChangeRigidbody;
+        GetComponent<PlayerManager>().PartManager.UpdateEventListeners();
+    }
     private void OnDisable() {
         BodyPartManager.OnAbiltiesChanged -= ChangeRigidbody;
     }
 
     void FixedUpdate()
     {
+        if (!Active) return;
         _rigidBody.sharedMaterial.friction = _stats.Grip;
         float targetSpeed = Input.GetAxisRaw("Horizontal") * _stats.MoveSpeed;
         float speedDifference = targetSpeed - _rigidBody.velocity.x;

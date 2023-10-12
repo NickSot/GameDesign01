@@ -17,7 +17,7 @@ public class PlayerJumpBehaviour : PlayerMovementBehaviour {
     private int _airJumpsLeft;
     private bool _isJumping = false;
 
-    protected override void Setup() {
+    private void OnEnable() {
         BodyPartManager.OnAbiltiesChanged += SetAbility;
     }
 

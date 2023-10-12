@@ -8,11 +8,11 @@ public class PlayerManager : MonoBehaviour
 {
     public BodyPartManager PartManager;
 
-
-    void Start() {
-        PartManager.ResetBodyParts();
+    private void Start() {
+        PartManager.EvaluateAbilities();
+        PartManager.UpdateEventListeners();
+        PartManager.EvaluateAbilities();
     }
-
 
 
     //public static event Action<PlayerState> OnPlayerStateChanged;

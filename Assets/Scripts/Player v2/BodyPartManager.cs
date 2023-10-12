@@ -37,6 +37,7 @@ public class BodyPartManager : ScriptableObject {
         if (type == BodyPartType.Head) return;
         HasBodyPart[(int)type] = false;
         OnBodyPartRemoved?.Invoke(type);
+        Debug.Log("Removed Part " + (int)type);
         EvaluateAbilities();
     }
 
@@ -52,9 +53,19 @@ public class BodyPartManager : ScriptableObject {
     }
 
     /// <summary>
+    /// Invokes the events in the right way so that listeners on new scene load will store accurate information.
+    /// </summary>
+    public void UpdateEventListeners() {
+        for(int i = 0; i < Enum.GetNames(typeof(BodyPartType)).Length; i++) {
+            if (HasBodyPart[i]) AddBodyPart( (BodyPartType) i );
+            else RemoveBodyPart( (BodyPartType) i );
+        }
+    }
+
+    /// <summary>
     /// (re-)Evaluates the different abilities of the player.
     /// </summary>
-    private void EvaluateAbilities() {
+    public void EvaluateAbilities() {
         HasAbility[(int)PlayerAbilities.Walk] = HasBodyPart[(int)BodyPartType.LeftLeg] && HasBodyPart[(int)BodyPartType.RightLeg];
         HasAbility[(int)PlayerAbilities.Jump] = HasBodyPart[(int)BodyPartType.LeftLeg] || HasBodyPart[(int)BodyPartType.RightLeg];
         HasAbility[(int)PlayerAbilities.Pull] = HasBodyPart[(int)BodyPartType.LeftArm] && HasBodyPart[(int)BodyPartType.RightArm];
@@ -67,12 +78,12 @@ public class BodyPartManager : ScriptableObject {
 
 [Serializable]
 public enum BodyPartType {
-    Head,
-    Torso,
-    RightArm,
-    LeftArm,
-    RightLeg,
-    LeftLeg
+    Head,      //0
+    Torso,     //1
+    RightArm,  //2
+    LeftArm,   //3
+    RightLeg,  //4
+    LeftLeg    //5
 }
 
 public enum PlayerAbilities {
