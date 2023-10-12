@@ -18,6 +18,8 @@ public class MoveableObject : MonoBehaviour
 
     }
 
+
+
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.layer == 7) {
             PlayerManager player = collision.gameObject.GetComponent<PlayerManager>();
