@@ -9,6 +9,7 @@ public abstract class PlayerAnimationController : MonoBehaviour {
     protected Animator _animator;
     protected SpriteRenderer _renderer;
     protected Rigidbody2D _rigidBody;
+    protected PlayerColliderController _playerCollisions;
     [SerializeField] protected BodyPartType _partType;
     public bool IsActive { get; protected set; }
 
@@ -17,6 +18,8 @@ public abstract class PlayerAnimationController : MonoBehaviour {
         _renderer = GetComponent<SpriteRenderer>();
         _rigidBody = GetComponentInParent<Rigidbody2D>();
         _renderer.enabled = GetComponentInParent<PlayerManager>().PartManager.HasBodyPart[(int)_partType];
+        _animator.enabled = GetComponentInParent<PlayerManager>().PartManager.HasBodyPart[(int)_partType];
+        _playerCollisions = GetComponentInParent<PlayerColliderController>();
         BodyPartManager.OnBodyPartAdded += SetActive;
         BodyPartManager.OnBodyPartRemoved += SetInactive;
     }
@@ -38,7 +41,10 @@ public abstract class PlayerAnimationController : MonoBehaviour {
     /// </summary>
     /// <param name="type"></param>
     protected void SetActive(BodyPartType type) {
-        if (type == _partType) _renderer.enabled = true;
+        if (type == _partType) {
+            if(_renderer != null) _renderer.enabled = true;
+            if(_animator != null) _animator.enabled = true;
+        }
     }
 
     /// <summary>
@@ -46,7 +52,10 @@ public abstract class PlayerAnimationController : MonoBehaviour {
     /// </summary>
     /// <param name="type"></param>
     protected void SetInactive(BodyPartType type) {
-        if (type == _partType) _renderer.enabled = false;
+        if (type == _partType) {
+            if (_renderer != null) _renderer.enabled = false;
+            if (_animator != null) _animator.enabled = false;
+        }
     }
 
     /// <summary>
@@ -76,6 +85,6 @@ public abstract class PlayerAnimationController : MonoBehaviour {
     /// </summary>
     protected int _currentState;
     protected int _lastState;
-    //private static readonly int ANIMATION = Animator.StringTOHash("ANIMATIONNAME");
+    //private static readonly int ANIMATION = Animator.StringToHash("ANIMATIONNAME");
 }
 

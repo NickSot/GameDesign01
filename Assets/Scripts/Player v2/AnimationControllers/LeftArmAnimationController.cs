@@ -9,15 +9,27 @@ public class LeftArmAnimationController : PlayerAnimationController {
     [SerializeField] private Vector3 _location = Vector3.zero;
     public override void Start() {
         base.Start();
-        _animator.enabled = false; //TODO REMOVE THIS LINE WHEN ANIMATIONS ARE IMPLEMENTED
         _partType = BodyPartType.LeftArm;
         _renderer.enabled = GetComponentInParent<PlayerManager>().PartManager.HasBodyPart[(int)_partType];
+        _animator.enabled = GetComponentInParent<PlayerManager>().PartManager.HasBodyPart[(int)_partType];
 
     }
+
 
     public override void Update() {
-        base.Update();
+        if (!_animator.enabled) return;
 
+        base.Update();
         transform.localPosition = _location;
     }
+
+    protected override int GetState() {
+        if (_walking) return Walk;
+        return Idle;
+    }
+
+
+    private static readonly int Walk = Animator.StringToHash("Left_arm_walkcycle");
+    private static readonly int Idle = Animator.StringToHash("Left_arm_idle");
+    private bool _walking => _playerCollisions.IsGrounded && Input.GetAxisRaw("Horizontal") != 0;
 }

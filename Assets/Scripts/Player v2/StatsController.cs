@@ -16,7 +16,7 @@ public class StatsController : MonoBehaviour
     public float Deceleration { get; private set; } = 3f;
     public float VelocityPower { get; private set; } = 1f;
     public float Friction { get; private set; } = 0.000f;
-    public float Grip { get; private set; } = 0.0f;
+    public float Grip { get; private set; } = 0.1f;
 
     private void Start() {
         CalculateGravity();
