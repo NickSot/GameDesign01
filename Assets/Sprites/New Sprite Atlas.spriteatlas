@@ -37,6 +37,14 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - 45d693729fcbf40418fbd1d30a843968: -223692343
+    - 45d693729fcbf40418fbd1d30a843968: 1160327572
+    - 45d693729fcbf40418fbd1d30a843968: -536411114
+    - 45d693729fcbf40418fbd1d30a843968: -1237603605
+    - 45d693729fcbf40418fbd1d30a843968: 713233906
+    - 45d693729fcbf40418fbd1d30a843968: -238938871
+    - 45d693729fcbf40418fbd1d30a843968: 468868047
+    - 45d693729fcbf40418fbd1d30a843968: -1707034274
     - 60f9529e50528d145a3a26a8db52bb7e: 1849551492
     - 60f9529e50528d145a3a26a8db52bb7e: -1260999233
     - 60f9529e50528d145a3a26a8db52bb7e: -1633942287
@@ -138,6 +146,14 @@ SpriteAtlas:
     - 60f9529e50528d145a3a26a8db52bb7e: -796120781
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: -223692343, guid: 45d693729fcbf40418fbd1d30a843968, type: 3}
+  - {fileID: 1160327572, guid: 45d693729fcbf40418fbd1d30a843968, type: 3}
+  - {fileID: -536411114, guid: 45d693729fcbf40418fbd1d30a843968, type: 3}
+  - {fileID: -1237603605, guid: 45d693729fcbf40418fbd1d30a843968, type: 3}
+  - {fileID: 713233906, guid: 45d693729fcbf40418fbd1d30a843968, type: 3}
+  - {fileID: -238938871, guid: 45d693729fcbf40418fbd1d30a843968, type: 3}
+  - {fileID: 468868047, guid: 45d693729fcbf40418fbd1d30a843968, type: 3}
+  - {fileID: -1707034274, guid: 45d693729fcbf40418fbd1d30a843968, type: 3}
   - {fileID: 1849551492, guid: 60f9529e50528d145a3a26a8db52bb7e, type: 3}
   - {fileID: -1260999233, guid: 60f9529e50528d145a3a26a8db52bb7e, type: 3}
   - {fileID: -1633942287, guid: 60f9529e50528d145a3a26a8db52bb7e, type: 3}
@@ -238,6 +254,14 @@ SpriteAtlas:
   - {fileID: -1800027999, guid: 60f9529e50528d145a3a26a8db52bb7e, type: 3}
   - {fileID: -796120781, guid: 60f9529e50528d145a3a26a8db52bb7e, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Slopes_2
+  - Slopes_3
+  - Slopes_0
+  - Slopes_1
+  - Slopes_6
+  - Slopes_7
+  - Slopes_4
+  - Slopes_5
   - Tileset_13
   - Tileset_12
   - Tileset_11
