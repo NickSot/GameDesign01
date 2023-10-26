@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class HeadAnimationController : PlayerAnimationController
 {
-    private bool isWalking => _rigidBody.freezeRotation;
-    private bool isRolling => !isWalking;
+    private bool _isWalking => _rigidBody.freezeRotation;
+    private bool _isRolling => !_isWalking;
     [SerializeField] private Vector3 _walkLocationHead = Vector3.zero;
     [SerializeField] private Vector3 _rollLocationHead = Vector3.zero;
 
     public override void Start() {
         base.Start();
-        _animator.enabled = false; //TODO REMOVE THIS LINE WHEN ANIMATIONS ARE IMPLEMENTED
         BodyPartManager.OnAbiltiesChanged += SetLocation;
+        _partType = BodyPartType.Head;
+        _renderer.enabled = GetComponentInParent<PlayerManager>().PartManager.HasBodyPart[(int)_partType];
+        _animator.enabled = GetComponentInParent<PlayerManager>().PartManager.HasBodyPart[(int)_partType];
     }
 
     protected override void OnDisable() {
@@ -21,12 +23,15 @@ public class HeadAnimationController : PlayerAnimationController
     }
 
     public override void Update() {
-        if (isWalking) { //if we are walking
+        if (_isWalking) { //if we are walking
             HandleWalking();
         } 
-        if (isRolling) { //if we are rolling
+        if (_isRolling) { //if we are rolling
             HandleRolling();
         }
+        _currentState = GetState();
+        if (_currentState != _lastState) _animator.CrossFade(_currentState, 0, 0);
+        _lastState = _currentState;
     }
 
     private void HandleWalking() {
@@ -44,4 +49,13 @@ public class HeadAnimationController : PlayerAnimationController
             transform.localPosition = _rollLocationHead;
         }
     }
+
+    protected override int GetState() {
+        if (_walking) return Walk;
+        return Idle;
+    }
+
+    private static readonly int Walk = Animator.StringToHash("Head_walkcycle");
+    private static readonly int Idle = Animator.StringToHash("Head_idle");
+    private bool _walking => _isWalking && _playerCollisions.IsGrounded && Input.GetAxisRaw("Horizontal") != 0;
 }
