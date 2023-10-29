@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 3726815334764566869}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,6 +172,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fc9ba62483caf49835e5e3baab7b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _leftLegObject: {fileID: 8492145228553545907, guid: ce1626ca8f5a1ec4f80f285472819ffd, type: 3}
+  _rightLegObject: {fileID: 284206942266407823, guid: 5b53c973755a6584cb39f8a9b81d2a2c, type: 3}
+  _leftArmObject: {fileID: 3506220235510415224, guid: 1cbe42bea1cb247409ee7ac1b1c13a77, type: 3}
+  _rightArmObject: {fileID: 7258349405513019159, guid: 4f5d453dbc1fd1348b866e32d8e47d8a, type: 3}
+  _torsoObject: {fileID: 1315168588203529218, guid: 67128fc1cb2e0124e8f60e1fdfe0cda0, type: 3}
 --- !u!58 &2254903546742250770
 CircleCollider2D:
   m_ObjectHideFlags: 0

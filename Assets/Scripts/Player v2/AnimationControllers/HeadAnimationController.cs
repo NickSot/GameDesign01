@@ -12,6 +12,8 @@ public class HeadAnimationController : PlayerAnimationController
     public override void Start() {
         base.Start();
         BodyPartManager.OnAbiltiesChanged += SetLocation;
+        if (_isRolling) transform.localPosition = _rollLocationHead;
+        if (_isWalking) transform.localPosition = _walkLocationHead;
         _partType = BodyPartType.Head;
         _renderer.enabled = GetComponentInParent<PlayerManager>().PartManager.HasBodyPart[(int)_partType];
         _animator.enabled = GetComponentInParent<PlayerManager>().PartManager.HasBodyPart[(int)_partType];

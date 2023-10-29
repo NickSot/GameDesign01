@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
         PartManager.EvaluateAbilities();
         PartManager.UpdateEventListeners();
         PartManager.EvaluateAbilities();
+        PartManager.AddBodyPart(BodyPartType.Head);
     }
 
 
