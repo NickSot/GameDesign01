@@ -29,7 +29,7 @@ public class PlayerJumpBehaviour : PlayerMovementBehaviour {
     {
         if (!Active) return;
         _playerCollider.DoGroundCheck();
-
+        
         //update buffer timers
         _timeLastOnGround -= Time.deltaTime;
         _timeJumpBuffer -= Time.deltaTime;

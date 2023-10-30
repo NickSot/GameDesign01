@@ -16,7 +16,6 @@ public class PlayerHorizontalMovementBehaviour : PlayerMovementBehaviour {
         BodyPartManager.OnAbiltiesChanged += ChangeRigidbody;
         _rigidBody.sharedMaterial.friction = _stats.Grip;
         GetComponent<PlayerManager>().PartManager.UpdateEventListeners();
-
     }
     private void OnDisable() {
         BodyPartManager.OnAbiltiesChanged -= ChangeRigidbody;
