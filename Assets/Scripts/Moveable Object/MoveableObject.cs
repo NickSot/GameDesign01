@@ -33,9 +33,9 @@ public class MoveableObject : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision) {
-        if (collision.gameObject.layer == 7) {
-            _rigidbody.bodyType= RigidbodyType2D.Static;
-        }
-    }
+    //private void OnCollisionExit2D(Collision2D collision) {
+    //    if (collision.gameObject.layer == 7) {
+    //        _rigidbody.bodyType= RigidbodyType2D.Static;
+    //    }
+    //}
 }

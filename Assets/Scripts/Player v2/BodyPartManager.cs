@@ -66,8 +66,8 @@ public class BodyPartManager : ScriptableObject {
     /// (re-)Evaluates the different abilities of the player.
     /// </summary>
     public void EvaluateAbilities() {
-        HasAbility[(int)PlayerAbilities.Walk] = HasBodyPart[(int)BodyPartType.LeftLeg] && HasBodyPart[(int)BodyPartType.RightLeg];
-        HasAbility[(int)PlayerAbilities.Jump] = HasBodyPart[(int)BodyPartType.LeftLeg] || HasBodyPart[(int)BodyPartType.RightLeg];
+        HasAbility[(int)PlayerAbilities.Jump] = HasBodyPart[(int)BodyPartType.LeftLeg] && HasBodyPart[(int)BodyPartType.RightLeg];
+        HasAbility[(int)PlayerAbilities.Walk] = HasBodyPart[(int)BodyPartType.LeftLeg] || HasBodyPart[(int)BodyPartType.RightLeg];
         HasAbility[(int)PlayerAbilities.Pull] = HasBodyPart[(int)BodyPartType.LeftArm] && HasBodyPart[(int)BodyPartType.RightArm];
         HasAbility[(int)PlayerAbilities.Push] = HasBodyPart[(int)BodyPartType.LeftArm] || HasBodyPart[(int)BodyPartType.RightArm];
         HasAbility[(int)PlayerAbilities.Roll] = HasBodyPart[(int)BodyPartType.Head]    && !HasAbility[(int)PlayerAbilities.Walk];
