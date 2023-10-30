@@ -49,7 +49,6 @@ public class EnemyController : MonoBehaviour
         }
         
         if (IsActive && Activated) {
-            Debug.Log("Activated");
             float targetSpeed = _stats.MoveSpeed;
             float speedDifference = targetSpeed - _rigidBody.velocity.x;
             float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? _stats.Acceleration : _stats.Deceleration;
@@ -73,7 +72,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject == player)
         {
-            SceneManager.LoadScene("Level3_Nick");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
