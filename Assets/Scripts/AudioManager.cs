@@ -3,34 +3,33 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance;
-
     [Header("AudioSource")]
-    [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource SFXSource;
+    [SerializeField]
+    public AudioSource musicSource;
+
+    [SerializeField]
+    public AudioSource SFXSource;
 
     [Header("Audio Clip")]
     public AudioClip Background;
+    public AudioClip Jump;
+
+    public static AudioManager Instance;
+
+    public AudioManager() {
+        if (Instance == null)
+            Instance = this;
+    }
 
     private void Start()
     {
-        if(Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
-        }
         musicSource.clip = Background;
         musicSource.Play();
-        //ChangeMasterVolume(1f);
     }
+
     public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
-    }
-
-    public void ChangeMasterVolume(float volume) {
-        AudioListener.volume = volume;
     }
 }
 

@@ -19,6 +19,8 @@ public class StoryManager : MonoBehaviour
     void Start()
     {
         image = panel.GetComponent<Image>();
+        image.sprite = sprites[imageIndex];
+        imageIndex++;
     }
 
     // Update is called once per frame
@@ -26,7 +28,7 @@ public class StoryManager : MonoBehaviour
     {
         if (imageIndex >= sprites.Length)
         {
-            SceneManager.LoadScene("Level_1");
+            SceneManager.LoadScene("Level_01");
             return;
         }
 

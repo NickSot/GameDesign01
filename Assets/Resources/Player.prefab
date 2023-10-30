@@ -144,7 +144,6 @@ MonoBehaviour:
   Active: 1
   _coyoteTimeThreshold: 0.1
   _jumpBufferThreshold: 0.1
-  _jumpSound: {fileID: 8300000, guid: d7b5c6414c7d74d428bb35202e1ae072, type: 3}
 --- !u!114 &9213285794542711430
 MonoBehaviour:
   m_ObjectHideFlags: 0
