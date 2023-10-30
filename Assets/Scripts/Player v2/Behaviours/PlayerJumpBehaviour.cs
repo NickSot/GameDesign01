@@ -8,7 +8,7 @@ public class PlayerJumpBehaviour : PlayerMovementBehaviour {
     private bool _hasAbility = false;
     [SerializeField] private float _coyoteTimeThreshold = 0.1f;
     [SerializeField] private float _jumpBufferThreshold = 0.1f;
-
+    [SerializeField] private AudioClip _jumpSound;
 
     private bool CanUseCoyote => !_playerCollider.IsGrounded && _timeLastOnGround > 0;
     private bool CanJump => _hasAbility && (_playerCollider.IsGrounded || CanUseCoyote || _airJumpsLeft > 0);
@@ -79,7 +79,7 @@ public class PlayerJumpBehaviour : PlayerMovementBehaviour {
         _isJumping = true;
         //_player.RigidBody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse); // this method results in buggy jump behaviour when on slope
         
-        AudioManager.Instance.SFXSource.PlayOneShot(AudioManager.Instance.Jump, 0.7f);
+        SoundManager.Instance.PlaySFX(_jumpSound);
 
         _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _stats.JumpVelocity);
         Debug.Log("Jumped");
