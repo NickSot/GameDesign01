@@ -16,8 +16,9 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager Instance;
 
-    public AudioManager() { 
-        Instance = this;
+    public AudioManager() {
+        if (Instance == null)
+            Instance = this;
     }
 
     private void Start()
