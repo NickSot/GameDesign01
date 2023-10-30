@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/BackgroundLab.prefab.meta
 guid: e71812532630f5b4d8ba18e7a8852d0e
 PrefabImporter:
+========
+guid: 892d9ae744ab2834e812d0b64ad1a79d
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> b3444c74b742b66488b5bca11585068908fece9f:Assets/Resources/Bridge.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
