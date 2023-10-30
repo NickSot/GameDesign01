@@ -79,7 +79,7 @@ public class PlayerJumpBehaviour : PlayerMovementBehaviour {
         _isJumping = true;
         //_player.RigidBody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse); // this method results in buggy jump behaviour when on slope
         
-        AudioManager.Instance.SFXSource.PlayOneShot(AudioManager.Instance.Jump, 0.7f);
+        // AudioManager.Instance.PlaySFX(AudioManager.Instance.Jump);
 
         _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _stats.JumpVelocity);
         Debug.Log("Jumped");
