@@ -19,6 +19,8 @@ public class StoryManager : MonoBehaviour
     void Start()
     {
         image = panel.GetComponent<Image>();
+        image.sprite = sprites[imageIndex];
+        imageIndex++;
     }
 
     // Update is called once per frame
