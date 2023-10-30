@@ -26,7 +26,7 @@ public class StoryManager : MonoBehaviour
     {
         if (imageIndex >= sprites.Length)
         {
-            SceneManager.LoadScene("Level_1");
+            SceneManager.LoadScene("Level_01");
             return;
         }
 
